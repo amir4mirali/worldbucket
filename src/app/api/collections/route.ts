@@ -3,7 +3,6 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 import { dbConnect } from '@/lib/db';
 import Collection from '@/lib/models/Collection';
-import Place from '@/lib/models/Place';
 
 // GET user's collections
 export async function GET(req: NextRequest) {
