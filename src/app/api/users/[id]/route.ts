@@ -5,7 +5,7 @@ import { dbConnect } from '@/lib/db';
 import User from '@/lib/models/User';
 
 // GET user profile
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
   try {
     await dbConnect();
 
