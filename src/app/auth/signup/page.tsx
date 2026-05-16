@@ -1,0 +1,142 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Globe } from 'lucide-react';
+
+export default function SignUpPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get('name');
+    const username = formData.get('username');
+    const email = formData.get('email');
+    const password = formData.get('password');
+    const confirmPassword = formData.get('confirmPassword');
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // Create user (placeholder - implement actual API call)
+      // For now, just sign in with the provided credentials
+      const result = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (result?.ok) {
+        router.push('/dashboard');
+      } else {
+        setError('Sign up failed. Please try again.');
+      }
+    } catch (err) {
+      setError('An error occurred during sign up');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleSignUp = async () => {
+    await signIn('google', { redirect: true, callbackUrl: '/dashboard' });
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800 flex items-center justify-center px-4 py-12">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Globe className="h-6 w-6 text-blue-600" />
+            <span className="font-bold text-lg">WorldBucket</span>
+          </div>
+          <CardTitle>Get Started</CardTitle>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
+            Create your account to start saving travel dreams
+          </p>
+        </CardHeader>
+
+        <CardContent>
+          {error && (
+            <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200 text-sm">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleSignUp} className="space-y-3">
+            <div>
+              <label className="block text-sm font-medium mb-1">Full Name</label>
+              <Input type="text" name="name" placeholder="John Doe" required />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-1">Username</label>
+              <Input type="text" name="username" placeholder="johndoe" required />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-1">Email</label>
+              <Input type="email" name="email" placeholder="you@example.com" required />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-1">Password</label>
+              <Input type="password" name="password" placeholder="••••••••" required />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-1">Confirm Password</label>
+              <Input type="password" name="confirmPassword" placeholder="••••••••" required />
+            </div>
+
+            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700" disabled={loading}>
+              {loading ? 'Creating account...' : 'Create Account'}
+            </Button>
+          </form>
+
+          <div className="relative my-4">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-slate-300 dark:border-slate-700" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-400">
+                Or
+              </span>
+            </div>
+          </div>
+
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full"
+            onClick={handleGoogleSignUp}
+          >
+            Continue with Google
+          </Button>
+
+          <p className="text-center text-sm text-slate-600 dark:text-slate-400 mt-6">
+            Already have an account?{' '}
+            <Link href="/auth/signin" className="text-blue-600 hover:underline font-medium">
+              Sign in
+            </Link>
+          </p>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}

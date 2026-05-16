@@ -1,0 +1,48 @@
+{
+  "name": "worldbucket",
+  "version": "1.0.0",
+  "description": "WorldBucket - A modern full-stack travel web application where users can save and organize places they want to visit around the world",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "db:seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "@auth/mongodb-adapter": "^3.11.2",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "autoprefixer": "^10.4.0",
+    "axios": "^1.4.0",
+    "bcryptjs": "^2.4.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.0.0",
+    "date-fns": "^2.30.0",
+    "dotenv": "^16.0.0",
+    "framer-motion": "^10.0.0",
+    "lucide-react": "^1.16.0",
+    "mongoose": "^7.0.0",
+    "next": "^14.0.0",
+    "next-auth": "^4.24.14",
+    "next-seo": "^7.2.0",
+    "postcss": "^8.4.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-hot-toast": "^2.4.0",
+    "slugify": "^1.6.0",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^3.3.0",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.0.0",
+    "zustand": "^4.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.54.0",
+    "eslint-config-next": "^15.0.0"
+  }
+}

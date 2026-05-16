@@ -1,0 +1,13 @@
+.next
+node_modules
+*.log
+.env
+.env.local
+.env.*.local
+.DS_Store
+*.pem
+dist
+build
+.turbo
+coverage
+.vercel
