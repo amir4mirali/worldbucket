@@ -6,7 +6,7 @@ import Collection from '@/lib/models/Collection';
 import Place from '@/lib/models/Place';
 
 // GET collection details
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
   try {
     await dbConnect();
 
