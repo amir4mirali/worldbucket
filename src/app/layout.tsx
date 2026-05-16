@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.js"></script>
+        <script async src="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.js"></script>
         <link
           href="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.css"
           rel="stylesheet"
