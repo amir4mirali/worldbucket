@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Header } from '@/components/Header';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { IUser, ICollection } from '@/types';
-import { MapPin, Users, Calendar } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 
 export default function ProfilePage({ params }: { params: { username: string } }) {
   const [user, setUser] = useState<IUser | null>(null);

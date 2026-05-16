@@ -28,7 +28,7 @@ export interface IPlace extends Document {
   };
   notes?: string;
   createdBy: Schema.Types.ObjectId;
-  collection: Schema.Types.ObjectId;
+  collectionId: Schema.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -93,7 +93,7 @@ const PlaceSchema = new Schema<IPlace>({
     ref: 'User',
     required: true,
   },
-  collection: {
+  collectionId: {
     type: Schema.Types.ObjectId,
     ref: 'Collection',
     required: true,
@@ -109,6 +109,6 @@ const PlaceSchema = new Schema<IPlace>({
 });
 
 PlaceSchema.index({ latitude: 1, longitude: 1 });
-PlaceSchema.index({ collection: 1 });
+PlaceSchema.index({ collectionId: 1 });
 
 export default mongoose.models.Place || mongoose.model<IPlace>('Place', PlaceSchema);

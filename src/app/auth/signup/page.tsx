@@ -20,16 +20,8 @@ export default function SignUpPage() {
     setError('');
 
     const formData = new FormData(e.currentTarget);
-    const username = formData.get('username');
     const email = formData.get('email');
     const password = formData.get('password');
-    const confirmPassword = formData.get('confirmPassword');
-
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      setLoading(false);
-      return;
-    }
 
     try {
       // Create user (placeholder - implement actual API call)

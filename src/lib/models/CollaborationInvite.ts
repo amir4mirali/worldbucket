@@ -3,7 +3,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 export interface ICollaborationInvite extends Document {
   from: Schema.Types.ObjectId;
   to: Schema.Types.ObjectId | string; // string for email invites
-  collection: Schema.Types.ObjectId;
+  collectionId: Schema.Types.ObjectId;
   role: 'viewer' | 'editor' | 'admin';
   status: 'pending' | 'accepted' | 'rejected';
   createdAt: Date;
@@ -20,7 +20,7 @@ const CollaborationInviteSchema = new Schema<ICollaborationInvite>({
     type: Schema.Types.Mixed,
     required: true, // Can be user ID or email
   },
-  collection: {
+  collectionId: {
     type: Schema.Types.ObjectId,
     ref: 'Collection',
     required: true,

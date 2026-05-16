@@ -14,7 +14,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     const collectionId = params.id;
     const status = searchParams.get('status');
 
-    let query: any = { collection: collectionId };
+    let query: any = { collectionId: collectionId };
 
     if (status) {
       query.status = status;
@@ -67,14 +67,14 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
 
     const place = new Place({
       ...body,
-      collection: collectionId,
+      collectionId: collectionId,
       createdBy: (session.user as any).id,
     });
 
     await place.save();
 
     // Update collection stats
-    const placeCount = await Place.countDocuments({ collection: collectionId });
+    const placeCount = await Place.countDocuments({ collectionId: collectionId });
     await Collection.findByIdAndUpdate(collectionId, {
       'stats.totalPlaces': placeCount,
     });

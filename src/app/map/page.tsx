@@ -1,12 +1,10 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { Map } from '@/components/map/Map';
 import { Header } from '@/components/Header';
 
 export default function MapPage() {
-  const { data: session } = useSession();
 
   return (
     <ProtectedRoute>

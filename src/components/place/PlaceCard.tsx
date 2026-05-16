@@ -3,7 +3,7 @@
 import React from 'react';
 import { IPlace } from '@/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { MapPin, Star, Tag, AlertCircle } from 'lucide-react';
+import { MapPin, Star, Tag } from 'lucide-react';
 
 interface PlaceCardProps {
   place: IPlace;

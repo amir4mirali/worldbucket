@@ -98,7 +98,7 @@ export async function DELETE(_req: NextRequest, { params }: { params: { id: stri
     }
 
     // Delete all places in collection
-    await Place.deleteMany({ collection: params.id });
+    await Place.deleteMany({ collectionId: params.id });
 
     await Collection.findByIdAndDelete(params.id);
 

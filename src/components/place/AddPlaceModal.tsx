@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { IPlace } from '@/types';
+import { IPlace, PlaceType, PlaceStatus, Priority } from '@/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,7 +17,17 @@ interface AddPlaceModalProps {
 }
 
 export function AddPlaceModal({ isOpen, onClose, onSubmit, loading }: AddPlaceModalProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    title: string;
+    description: string;
+    latitude: number;
+    longitude: number;
+    country: string;
+    city: string;
+    placeType: PlaceType;
+    status: PlaceStatus;
+    priority: Priority;
+  }>({
     title: '',
     description: '',
     latitude: 0,
@@ -135,7 +145,7 @@ export function AddPlaceModal({ isOpen, onClose, onSubmit, loading }: AddPlaceMo
                     { value: 'custom', label: 'Custom' },
                   ]}
                   value={formData.placeType}
-                  onChange={(e) => setFormData({ ...formData, placeType: e.target.value })}
+                  onChange={(e) => setFormData({ ...formData, placeType: e.target.value as PlaceType })}
                 />
               </div>
               <div>
@@ -147,7 +157,19 @@ export function AddPlaceModal({ isOpen, onClose, onSubmit, loading }: AddPlaceMo
                     { value: 'visited', label: 'Visited' },
                   ]}
                   value={formData.status}
-                  onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                  onChange={(e) => setFormData({ ...formData, status: e.target.value as PlaceStatus })}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Priority</label>
+                <Select
+                  options={[
+                    { value: 'low', label: 'Low' },
+                    { value: 'medium', label: 'Medium' },
+                    { value: 'high', label: 'High' },
+                  ]}
+                  value={formData.priority}
+                  onChange={(e) => setFormData({ ...formData, priority: e.target.value as Priority })}
                 />
               </div>
             </div>

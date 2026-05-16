@@ -33,7 +33,7 @@ export interface IPlace {
   };
   notes?: string;
   createdBy: string;
-  collection: string;
+  collectionId: string;
   createdAt: string;
   updatedAt: string;
 }

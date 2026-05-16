@@ -8,7 +8,7 @@ if (!MONGODB_URI) {
 
 export async function connectDB() {
   try {
-    const conn = await mongoose.connect(MONGODB_URI, {
+    const conn = await mongoose.connect(MONGODB_URI!, {
       maxPoolSize: 10,
       minPoolSize: 5,
     });
