@@ -1,7 +1,6 @@
 import NextAuth from 'next-auth';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 0;
 
 import { authOptions } from '@/lib/auth';
 
