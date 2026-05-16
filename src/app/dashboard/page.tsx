@@ -1,6 +1,6 @@
-'use client';
-
 export const dynamic = 'force-dynamic';
+
+'use client';
 
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { Button } from '@/components/ui/button';
