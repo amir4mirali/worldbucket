@@ -107,7 +107,7 @@ export function SignInPageClient() {
           </Button>
 
           <p className="text-center text-sm text-gray-600">
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <Link href="/auth/signup" className="text-indigo-600 hover:underline">
               Sign up
             </Link>
