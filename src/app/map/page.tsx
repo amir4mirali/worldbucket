@@ -1,6 +1,6 @@
-'use client';
-
 export const dynamic = 'force-dynamic';
+
+'use client';
 
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { Map } from '@/components/map/Map';
