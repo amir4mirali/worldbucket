@@ -20,7 +20,6 @@ export default function SignUpPage() {
     setError('');
 
     const formData = new FormData(e.currentTarget);
-    const name = formData.get('name');
     const username = formData.get('username');
     const email = formData.get('email');
     const password = formData.get('password');
