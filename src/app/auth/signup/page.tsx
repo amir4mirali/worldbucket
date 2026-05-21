@@ -1,7 +1,8 @@
 'use client';
-export const dynamic = 'force-dynamic';
 
 import { useState } from 'react';
+
+export const dynamic = 'force-dynamic';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
