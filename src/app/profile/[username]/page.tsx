@@ -1,6 +1,7 @@
 'use client';
 export const dynamic = 'force-dynamic';
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Header } from '@/components/Header';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -14,7 +15,7 @@ export default function ProfilePage({ params }: { params: { username: string } }
 
   useEffect(() => {
     fetchUserProfile();
-  }, [params.username]);
+  }, [params.username, fetchUserProfile]);
 
   const fetchUserProfile = async () => {
     try {
@@ -67,10 +68,12 @@ export default function ProfilePage({ params }: { params: { username: string } }
         <Card className="mb-8">
           <CardContent className="pt-8">
             <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-              <img
+              <Image
                 src={user.avatar || '/default-avatar.png'}
                 alt={user.name}
-                className="h-24 w-24 rounded-full"
+                width={96}
+                height={96}
+                className="h-24 w-24 rounded-full object-cover"
               />
 
               <div className="flex-1">
@@ -111,10 +114,11 @@ export default function ProfilePage({ params }: { params: { username: string } }
               {collections.map((collection) => (
                 <Card key={collection._id}>
                   {collection.coverImage && (
-                    <div className="h-40 w-full bg-gradient-to-br from-blue-400 to-purple-500">
-                      <img
+                    <div className="h-40 w-full bg-gradient-to-br from-blue-400 to-purple-500 relative">
+                      <Image
                         src={collection.coverImage}
                         alt={collection.name}
+                        fill
                         className="w-full h-full object-cover"
                       />
                     </div>

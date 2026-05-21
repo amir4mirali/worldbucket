@@ -2,7 +2,7 @@ import { withAuth } from 'next-auth/middleware';
 import { NextRequest } from 'next/server';
 
 export const middleware = withAuth(
-  function middleware(request: NextRequest) {
+  function middleware(_request: NextRequest) {
     // Add any additional middleware logic here
     return null;
   },

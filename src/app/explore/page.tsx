@@ -1,6 +1,7 @@
 'use client';
 export const dynamic = 'force-dynamic';
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Header } from '@/components/Header';
 import { Card, CardContent } from '@/components/ui/card';
@@ -49,10 +50,11 @@ export default function ExplorePage() {
             {collections.map((collection) => (
               <Card key={collection._id} className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
                 {collection.coverImage && (
-                  <div className="h-40 w-full bg-gradient-to-br from-blue-400 to-purple-500">
-                    <img
+                  <div className="h-40 w-full bg-gradient-to-br from-blue-400 to-purple-500 relative">
+                    <Image
                       src={collection.coverImage}
                       alt={collection.name}
+                      fill
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -61,10 +63,12 @@ export default function ExplorePage() {
                   <h3 className="font-semibold text-lg mb-2 line-clamp-1">{collection.name}</h3>
 
                   <div className="flex items-center gap-2 mb-4">
-                    <img
+                    <Image
                       src={(collection.owner as any).avatar || '/default-avatar.png'}
                       alt={(collection.owner as any).name}
-                      className="h-8 w-8 rounded-full"
+                      width={32}
+                      height={32}
+                      className="h-8 w-8 rounded-full object-cover"
                     />
                     <span className="text-sm text-slate-600 dark:text-slate-400">
                       by {(collection.owner as any).name}

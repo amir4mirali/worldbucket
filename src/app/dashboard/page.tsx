@@ -1,6 +1,7 @@
 'use client';
 export const dynamic = 'force-dynamic';
 
+import Image from 'next/image';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -56,10 +57,11 @@ export default function DashboardPage() {
             {(collections as any).map((collection: any) => (
               <Card key={collection._id} className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
                 {collection.coverImage && (
-                  <div className="h-32 w-full bg-gradient-to-br from-blue-400 to-purple-500">
-                    <img
+                  <div className="h-32 w-full bg-gradient-to-br from-blue-400 to-purple-500 relative">
+                    <Image
                       src={collection.coverImage}
                       alt={collection.name}
+                      fill
                       className="w-full h-full object-cover"
                     />
                   </div>

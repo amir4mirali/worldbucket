@@ -49,7 +49,7 @@ export function Map({
     return () => {
       map.current?.remove();
     };
-  }, []);
+  }, [latitude, longitude, zoom, onMapClick]);
 
   // Update markers
   useEffect(() => {

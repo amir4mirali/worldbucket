@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import React from 'react';
 import { IPlace } from '@/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -16,9 +17,10 @@ export function PlaceCard({ place, onDelete, onEdit }: PlaceCardProps) {
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
       {place.images.length > 0 && (
         <div className="h-40 w-full bg-gradient-to-br from-blue-400 to-purple-500 relative">
-          <img
+          <Image
             src={place.images[0]}
             alt={place.title}
+            fill
             className="w-full h-full object-cover"
           />
         </div>
