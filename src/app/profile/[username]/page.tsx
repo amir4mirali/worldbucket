@@ -14,28 +14,28 @@ export default function ProfilePage({ params }: { params: { username: string } }
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchUserProfile();
-  }, [params.username, fetchUserProfile]);
+    const fetchUserProfile = async () => {
+      try {
+        const userResponse = await fetch(`/api/users/${params.username}`);
+        const userData = await userResponse.json();
 
-  const fetchUserProfile = async () => {
-    try {
-      const userResponse = await fetch(`/api/users/${params.username}`);
-      const userData = await userResponse.json();
+        if (userData.success) {
+          setUser(userData.data);
 
-      if (userData.success) {
-        setUser(userData.data);
-
-        // Fetch user's collections
-        const collectionsResponse = await fetch(`/api/collections?userId=${userData.data._id}`);
-        const collectionsData = await collectionsResponse.json();
-        setCollections(collectionsData.data || []);
+          // Fetch user's collections
+          const collectionsResponse = await fetch(`/api/collections?userId=${userData.data._id}`);
+          const collectionsData = await collectionsResponse.json();
+          setCollections(collectionsData.data || []);
+        }
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.error('Error fetching profile:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
+
+    fetchUserProfile();
+  }, [params.username]);
 
   if (loading) {
     return (
